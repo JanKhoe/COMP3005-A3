@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+Video Tutorial: https://drive.google.com/file/d/1fgRUL5QDqZQiDr786I_oRTuIaKuK6o23/view?usp=sharing
+
 ## COMP 3005 A3 - CRUD Web Application
 
 This is Jansen Khoe's (101260040) submission for Assignemnt 3.
