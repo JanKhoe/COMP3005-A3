@@ -1,36 +1,43 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## COMP 3005 A3 - CRUD Web Application
 
-First, run the development server:
+This is Jansen Khoe's (101260040) submission for Assignemnt 3.
+A simple Web aplication that supports the creation, reading, updating and deleting of a student object that is stored in your local postgres database manager.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to setup
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Preliminary
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Make sure you have node installed on your local machine.
+2. download this repo as a zip file 
+3. open up a cmd terminal with COMP3005-A3-main as the working directory and run 'npm install'
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Database Connection / Database Setup
 
-## Learn More
+1. open up pgAdmin
+2. Create a new database
+3. Create a .env file in the root of the project and add a variable called 'DATABASE_URL=postgresql://postgres:{userPassword}@localhost:5432/{DatabaseName}' (assuming that you have the existing user postgres otherwise change 'postgres' to an existing user and its password)
+4. going back to the terminal you used in `Preliminary` run `npm run setup` which will create a table and populate it with default student data
 
-To learn more about Next.js, take a look at the following resources:
+# Running the application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. using the same terminal you can run `npm run dev` which will launch the application at http://localhost:3000/
+2. from here you can see that the student list is always displayed and has support for creating, updating or deleting students. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## TA Information
 
-## Deploy on Vercel
+This application was made using next.js which leverages the React framework to streamline the development process but can look a bit confusing if you are unfamiliar with the tech stack. So here are some generic places to check for code quality.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+lib > db.ts: this facilitates my connection to the database and allows me to send queries to the database manager. 
+app > components: stores all reuseable code snippets that i need for this assignment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+app > page.tsx: this is where the landing page is. Everything is rendered here.
+
+app > components > AddStudentButton.tsx: this is responsible for sending the POST request to add students to the table. It uses states to store the text input values.
+
+app > components > StudentTable.tsx: This is the component that is responsible for fetching All students and displaying it on the page. It has a dependency on a certain variable that when changed will call the fetch again. This is changed whenever i add, delete or update a student, ensuring that the display is always up to date.
+
+app > components > DeleteStudentButton.tsx: This is a component used within the StudentTable component which is assigned to each entry on the table and uses their ID to send a DELETE request to the manager if it is clicked
+
+app > components > UpdateStudentButton.tsx: This is a component used within the StudentTable component which is assigned to each entry ton the table and uses their ID and an additional text input to send an PUT request to the manager if it is clicked which will change the respective's students' email.
